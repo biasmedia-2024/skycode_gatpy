@@ -1,0 +1,2 @@
+D:/project1/fuel_app/android/app/.cxx/Debug/1n173x5e/x86/CMakeFiles/edit_cache.dir
+D:/project1/fuel_app/android/app/.cxx/Debug/1n173x5e/x86/CMakeFiles/rebuild_cache.dir
