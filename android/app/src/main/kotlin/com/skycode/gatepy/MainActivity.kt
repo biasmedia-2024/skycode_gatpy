@@ -1,4 +1,4 @@
-package com.example.fuel_app
+package com.skycode.gatepy
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -5,6 +5,8 @@ import 'package:fuel_app/screens/permission_screen.dart';
 import 'package:fuel_app/screens/reminder_screen.dart';
 import 'package:gap/gap.dart';
 
+import 'aboutus_page.dart';
+
 class profile_screeen extends StatefulWidget {
   const profile_screeen({super.key});
 
@@ -467,28 +469,37 @@ class _profile_screeenState extends State<profile_screeen> {
                           height: 19.h,
                         ),
                         Gap(20.w),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "About us",
-                              style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black,
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (_) => AboutUsPage()),
+                            );
+                          },
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "About us",
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black,
+                                ),
                               ),
-                            ),
-                            Gap(5.h),
-                            Text(
-                              "Privacy policy, Terms & About us",
-                              style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xffCCCACA),
+                              Gap(5.h),
+                              Text(
+                                "Privacy policy, Terms & About us",
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color(0xffCCCACA),
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
+                            ],
+                          ),
+                        )
+
                       ],
                     ),
                     Icon(

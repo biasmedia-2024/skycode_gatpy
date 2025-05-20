@@ -285,11 +285,40 @@ class _HomePageState extends State<HomePage> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => WalletPage()),
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                              backgroundColor: Colors.white,
+                              title: Row(
+                                children: [
+                                  Icon(Icons.hourglass_top_rounded, color: Colors.orange),
+                                  SizedBox(width: 8),
+                                  Text("Coming Soon", style: TextStyle(fontWeight: FontWeight.bold)),
+                                ],
+                              ),
+                              content: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Image.asset("assets/wallet.png", height: 100),
+                                  SizedBox(height: 10),
+                                  Text(
+                                    "We're working hard to bring you the Mobile Recharge feature.\nStay tuned for exciting rewards!",
+                                    style: TextStyle(fontSize: 14, color: Colors.black87),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+                              ),
+                              actions: [
+                                TextButton(
+                                  child: Text("OK", style: TextStyle(color: Colors.green)),
+                                  onPressed: () => Navigator.of(context).pop(),
+                                ),
+                              ],
+                            ),
                           );
                         },
+
                         child: Transfer_money(
                           photo: Image.asset("assets/wallet.png"),
                           text: "Wallet",
@@ -608,7 +637,7 @@ class _HomePageState extends State<HomePage> {
                             },
                             child: Transfer_money(
                               photo: Image.asset("assets/gatepayinsu.png"),
-                              text: "Gatepay Insurance",
+                              text: "Gatepy Insurance",
                             ),
                           ),
                           GestureDetector(
@@ -773,7 +802,7 @@ class _HomePageState extends State<HomePage> {
                             },
                             child: Transfer_money(
                               photo: Image.asset("assets/gatepysavings.png"),
-                              text: "Gatepay Savings",
+                              text: "Gatepy Savings",
                             ),
                           ),
                           // Transfer_money(

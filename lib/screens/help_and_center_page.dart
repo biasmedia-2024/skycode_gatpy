@@ -105,7 +105,7 @@ class HelpAndCenterPage extends StatelessWidget {
                   Icon(Icons.phone, size: 24.w, color: Color(0xff2B00D4)),
                   SizedBox(width: 10.w),
                   Text(
-                    "+91 98765-43210", // Replace with actual support number
+                    "+91 9844447547", // Replace with actual support number
                     style: TextStyle(fontSize: 18.sp, color: Colors.black),
                   ),
                 ],
@@ -116,7 +116,7 @@ class HelpAndCenterPage extends StatelessWidget {
                   Icon(Icons.email, size: 24.w, color: Color(0xff2B00D4)),
                   SizedBox(width: 10.w),
                   Text(
-                    "support@yourapp.com", // Replace with actual support email
+                    "Support@gatepy.com", // Replace with actual support email
                     style: TextStyle(fontSize: 18.sp, color: Colors.black),
                   ),
                 ],

@@ -84,14 +84,15 @@ class _MemberPageState extends State<MemberPage> {
       return;
     }
 
-    final data = {
-      "vehicle_number": vehicleNumberController.text,
-      "fuel_type": selectedFuelType.toLowerCase(), // "petrol" or "diesel"
-      "plan_duration": selectedPlan == "100 Days" ? 100 : 365,
-      "daily_limit": int.parse(selectedPackageName!.split(" ").first), // gets `10` from "10 LTR/day"
-      "price": selectedPackagePrice, // e.g., "12000.00"
-    };
+    final dailyLimit = int.tryParse(selectedPackageName.split(" ").first) ?? 0;
 
+    final data = {
+      "vehicle_number": vehicleNumber,
+      "fuel_type": selectedFuelType.toLowerCase(),
+      "plan_duration": selectedPlan == "100 Days" ? 100 : 365,
+      "daily_limit": dailyLimit,
+      "price": selectedPackagePrice,
+    };
 
     final response = await http.post(
       Uri.parse('https://gatepy.com/api/subscriptions'),
@@ -102,17 +103,45 @@ class _MemberPageState extends State<MemberPage> {
     print("Status Code: ${response.statusCode}");
     print("Response Body: ${response.body}");
 
-    if (response.statusCode == 200) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Subscription successful")),
+    if (response.statusCode >= 200 && response.statusCode < 300) {
+      // SUCCESS CASE
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            title: Row(
+              children: const [
+                Icon(Icons.check_circle, color: Colors.green),
+                SizedBox(width: 8),
+                Text("Subscription Successful", style: TextStyle(color: Colors.green)),
+              ],
+            ),
+            content: const Text("Thank you for subscribing to GatePay services.", style: TextStyle(color: Colors.green),),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(); // Close dialog
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (_) => IndexPage()),
+                  );
+                },
+                child: const Text("OK", style: TextStyle(color: Colors.green)),
+              ),
+            ],
+          );
+        },
       );
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) => IndexPage()));
     } else {
+      // FAILURE CASE
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Failed to subscribe. Please try again.")),
+        SnackBar(content: Text("Subscription Failed...Try again...")),
+
       );
     }
+
   }
+
 
   @override
   Widget build(BuildContext context) {
